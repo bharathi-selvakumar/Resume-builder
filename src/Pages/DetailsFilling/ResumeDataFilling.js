@@ -1731,7 +1731,6 @@ export const ResumeDataFilling = () => {
         >
           Add Certification
         </Button>
-
         <Typography variant="h5" fontWeight="bold" gutterBottom>
             Projects
           </Typography>
