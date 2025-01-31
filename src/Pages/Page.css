@@ -1,0 +1,58 @@
+/* body {
+  background: linear-gradient(to bottom, #ff7e5f, #feb47b); 
+  height: 100vh; 
+  margin: 0;
+} */
+
+/* .footer{
+  background: linear-gradient(360deg,#403d3d94,#1e201f22 60%);
+  border-radius: 1rem;
+  margin-bottom: 30px;
+} */
+
+
+nav {
+  max-width: 100%;
+  padding: 3px;
+}
+nav button {
+  width: 70px;
+  margin-left: auto;
+}
+nav .overall-Navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 9px;
+  max-width: 100%;
+  flex-grow: 1;
+}
+
+nav .Catogery {
+  display: flex;
+  gap: 2rem;
+}
+
+.dropdown-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-right: 20px;
+}
+
+.toggle-catogery button {
+  display: flex;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.TempletCards{
+
+  transition: transform 0.4s ease-in-out, 
+  
+}
+
+.TempletCards :hover{
+  transform: scale(0.9);
+  transition: transform 0.4s ease-in-out;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+}
