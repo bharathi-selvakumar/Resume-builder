@@ -48,7 +48,7 @@ export const MuiStepper = ({ activeStep, handleNext, handleBack }) => {
     // const { activeStep ,handleBack,handleNext} = useStepper();
 
     return (
-        <Stack sx={{ width: '100%' , display: { xs: 'none', sm: 'none', md: 'block' },}} spacing={4} mt="3rem" >
+        <Stack sx={{ width: '100%', display: { xs: 'none', sm: 'none', md: 'block' }, }} spacing={4} mt="3rem" >
             <Stepper alternativeLabel activeStep={activeStep} connector={<ColorlibConnector />}>
                 {steps.map((label, index) => (
                     <Step key={label} completed={index < activeStep}>

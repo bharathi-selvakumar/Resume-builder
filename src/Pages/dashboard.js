@@ -1,197 +1,3 @@
-// // import React from "react";
-// // import { Container, Button, Typography } from "@mui/material";
-// // import Box from "@mui/material/Box";
-// // import animationData from "../assets/arrow.gif";
-// // import EastIcon from "@mui/icons-material/East";
-// // import resumeing from "../assets/DashboardResume.png";
-// // import stepToCreate1 from "../assets/stepToCreate1.png";
-// // import stepToCreate2 from "../assets/stepToCreate2.png";
-// // import stepToCreate3 from "../assets/stepToCreate3.png";
-// // import stepToCreate4 from "../assets/stepToCreate4.png";
-// // import review from "../assets/review.png";
-// // import "./Page.css";
-// // import Footer from "./footer";
-
-// // const Dashboard = () => {
-// //   return (
-// //     <Container maxWidth="lg">
-// //       {/* Main Section */}
-// //       <Box
-// //         sx={{
-// //           display: "flex",
-// //           flexDirection: { xs: "column", md: "row" },
-// //           alignItems: "center",
-// //           justifyContent: "space-between",
-// //           mt: 5,
-// //         }}
-// //       >
-// //         {/* Left Content */}
-// //         <Box sx={{ flex: 1, mr: { md: 2 }, textAlign: "left" }}>
-// //           <Typography variant="h4" sx={{ fontWeight: "bold", lineHeight: 1.2 }}>
-// //             <span style={{ fontSize: "70px" }}>A</span>ccelerate your job
-// //             search with professionally designed resume templates
-// //           </Typography>
-// //           <Typography variant="h6" sx={{ mt: 2 }}>
-// //             Choose from a curated selection of recruiter-approved designs, and
-// //             effortlessly enhance your resume with preloaded skills and
-// //             impactful phrases. Land your dream job in half the time!
-// //           </Typography>
-// //           <Box
-// //             sx={{
-// //               mt: 3,
-// //               display: "flex",
-// //               alignItems: "center",
-// //               gap: 2,
-// //               flexWrap: "wrap",
-// //             }}
-// //           >
-// //             <Box
-// //               component="img"
-// //               src={animationData}
-// //               alt="animation"
-// //               sx={{
-// //                 width: "100%",
-// //                 maxWidth: "150px",
-// //               }}
-// //             />
-// //             <Button
-// //               variant="contained"
-// //               color="primary"
-// //               endIcon={<EastIcon />}
-// //               size="large"
-// //               href="/templets"
-// //             >
-// //               Choose a Template
-// //             </Button>
-// //           </Box>
-// //         </Box>
-// //         {/* Right Content */}
-// //         <Box
-// //           sx={{
-// //             flex: 1,
-// //             display: "flex",
-// //             justifyContent: "center",
-// //             mt: { xs: 4, md: 0 },
-// //           }}
-// //         >
-// //           <Box
-// //             component="img"
-// //             src={resumeing}
-// //             alt="Resume preview"
-// //             sx={{
-// //               maxWidth: "270px",
-// //               height: "auto",
-// //               boxShadow: "12px 12px 18px rgba(0,0,0,0.1)",
-// //               borderRadius: "10px",
-// //             }}
-// //           />
-// //         </Box>
-// //       </Box>
-
-// //       {/* Additional Content */}
-// //       <Box sx={{ textAlign: "center", mt: 8 }}>
-// //         <Typography variant="h4" sx={{ fontWeight: "bold" }}>
-// //           Make a Resume That Gets Results
-// //         </Typography>
-// //       </Box>
-
-// //       <Box
-// //         sx={{
-// //           display: "flex",
-// //           flexDirection: { xs: "column", md: "row" },
-// //           justifyContent: "center",
-// //           gap: 4,
-// //           mt: 5,
-// //           textAlign: "center",
-// //         }}
-// //       >
-// //         {[stepToCreate1, stepToCreate2, stepToCreate3, stepToCreate4].map(
-// //           (img, index) => (
-// //             <Box key={index}>
-// //               <Box
-// //                 component="img"
-// //                 src={img}
-// //                 alt={`Step ${index + 1}`}
-// //                 sx={{ maxWidth: "8rem", height: "auto" }}
-// //               />
-// //               <Typography
-// //                 variant="subtitle1"
-// //                 sx={{ fontWeight: "bold", mt: 2 }}
-// //               >
-// //                 {[
-// //                   "Choose a recruiter-approved template",
-// //                   "Add skills and bullet points in one click",
-// //                   "Finish your resume in minutes",
-// //                   "Download in Word, PDF and more",
-// //                 ][index]}
-// //               </Typography>
-// //             </Box>
-// //           )
-// //         )}
-// //       </Box>
-
-// //       {/* Review Section */}
-// //       <Box sx={{ textAlign: "center", mt: 9 }}>
-// //         <Typography variant="h4" sx={{ fontWeight: "bold" }}>
-// //           Our resume builder includes a review from one of our experts
-// //         </Typography>
-// //       </Box>
-// //       <Box
-// //         sx={{
-// //           display: "flex",
-// //           flexDirection: { xs: "column", md: "row" },
-// //           gap: 5,
-// //           mt: 4,
-// //         }}
-// //       >
-// //         <Box
-// //           component="img"
-// //           src={review}
-// //           alt="Review"
-// //           sx={{
-// //             maxWidth: "350px",
-// //             borderRadius: "30px",
-// //             alignSelf: "center",
-// //           }}
-// //         />
-// //         <Box sx={{ flex: 1, textAlign: "left" }}>
-// //           {[
-// //             {
-// //               title: "Real feedback from a Resume Analyst",
-// //               desc: "We’ll read your resume carefully and suggest improvements",
-// //             },
-// //             {
-// //               title: "Section-by-section suggestions",
-// //               desc:
-// //                 "Get detailed feedback on your summary, skills, work history, and education sections",
-// //             },
-// //             {
-// //               title: "Get answers specific to your resume",
-// //               desc: "Submit any questions you have for additional guidance",
-// //             },
-// //             {
-// //               title: "Quick turnaround",
-// //               desc: "Get your review back in just 2-3 business days",
-// //             },
-// //           ].map((item, index) => (
-// //             <Box key={index} sx={{ mb: 2 }}>
-// //               <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-// //                 {item.title}
-// //               </Typography>
-// //               <Typography>{item.desc}</Typography>
-// //             </Box>
-// //           ))}
-// //         </Box>
-// //       </Box>
-// //       <Footer />
-// //     </Container>
-// //   );
-// // };
-
-// // export default Dashboard;
-
-
-
 import React from "react";
 import Container from "@mui/material/Container";
 import { Button, Grid, Typography } from "@mui/material";
@@ -418,7 +224,7 @@ const Dashboard = () => {
               sx={{
                 height: "auto",
                 maxWidth: "380px",
-                ml: { xs: 5, sm: "8rem", lg: "7rem",md:"5rem" },
+                ml: { xs: 5, sm: "8rem", lg: "7rem", md: "5rem" },
                 borderRadius: "30px",
               }}
             />
@@ -453,7 +259,7 @@ const Dashboard = () => {
               mt: 2,
               display: "flex",
               flexDirection: { xs: "column", md: "row", lg: "row" },
-              mt: { xs: 2, md: 4, lg: 4 },
+              // mt: { xs: 2, md: 4, lg: 4 },
               gap: 5,
             }}
           >
@@ -490,7 +296,6 @@ const Dashboard = () => {
               </Box>
             </Box>
           </Box>
-
           <Footer />
         </Grid>
       </Container>
