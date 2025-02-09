@@ -1,4 +1,5 @@
-import React from "react";
+
+import React, { useState } from "react";
 // import axios from 'axios';
 import {
   Container,
@@ -16,45 +17,37 @@ import { Skill } from "./Resume-pages/skill";
 import { Summary } from "./Resume-pages/summary";
 import { AdditionalDetails } from "./Resume-pages/additional Details";
 
+import Data from "./Resume-pages/Pdf_ResumeTemplet/Data";
+import { FormProvider } from "./Resume-pages/StateMaintain/data_useState";
+
 export const ResumeDataFilling = () => {
-  // const resumeStats = {
-  //   completionScore: 85,
-  //   strengths: [
-  //     'Strong professional experience section',
-  //     'Well-structured education history',
-  //     'Clear skill descriptions',
-  //   ],
-  //   improvements: [
-  //     'Add more quantifiable achievements',
-  //     'Include relevant certifications',
-  //     'Expand on project details',
-  //   ],
-  //   experience: 4,
-  //   education: 2,
-  //   skills: 12,
-  // };
 
   const Header_Page = () => (
-    <Header />
+   <FormProvider><Header /></FormProvider> 
   )
   const Education_Page = () => (
-    <Education />
+    <FormProvider> <Education /> </FormProvider>
   )
   const Experience_Page = () => (
-    <Experience />
+   <FormProvider> <Experience /></FormProvider>
   )
   const Skill_Page = () => (
-    <Skill />
+    <FormProvider>  <Skill /></FormProvider>
+   
   )
 
   const Summary_Page = () => (
-    <Summary />
+    <FormProvider>  <Summary /> </FormProvider>
+
   )
 
   const AdditionalDetails_Page = () => (
-    <AdditionalDetails />
+   <FormProvider> <AdditionalDetails /> </FormProvider>
   )
-
+  const ResumePDF_Page = () => (
+    <FormProvider><Data/></FormProvider>
+    
+  )
   const { activeStep, handleNext, handleBack, isBackDisabled, isNextDisabled } = useStepper();
 
 
@@ -72,6 +65,9 @@ export const ResumeDataFilling = () => {
         return Summary_Page();
       case 5:
         return AdditionalDetails_Page();
+      case 6:
+        return ResumePDF_Page();
+
       default:
         return;
     }

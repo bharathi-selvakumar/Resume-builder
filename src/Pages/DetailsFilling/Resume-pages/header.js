@@ -6,18 +6,22 @@ import {
     Typography,
     TextField,
 } from '@mui/material';
+import Data from "./Pdf_ResumeTemplet/Data";
+import {useFormContext } from "./StateMaintain/data_useState"
+
 export const Header = () => {
    
-    const [Header, setHeader] = useState({
-        firstname: "",
-        lastname: "",
-        city: "",
-        country: "",
-        pincode: "",
-        email: "",
-        experience: "",
-    });
+    // const [header, setHeader] = useState({
+    //     firstname: "",
+    //     lastname: "",
+    //     city: "",
+    //     country: "",
+    //     pincode: "",
+    //     email: "",
+    //     experience: "",
+    // });
 
+const{header ,setHeader }=useFormContext();
     const validateEmail = (email) => {
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
         return emailRegex.test(email);
@@ -115,7 +119,6 @@ export const Header = () => {
     ];
 
 
-
     const renderTextFields = () => {
         return textFieldConfigs.map((config) => (
             <TextField
@@ -123,7 +126,7 @@ export const Header = () => {
                 id={config.id}
                 label={config.label}
                 variant={config.variant}
-                value={Header[config.id]}
+                value={header[config.id]}
                 onChange={handleChange}
                 sx={{
                     ...config.sx, transition: "transform 0.3s ease-in-out",

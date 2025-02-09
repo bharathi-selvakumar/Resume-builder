@@ -21,6 +21,8 @@ import {
     MenuItem,
 } from '@mui/material';
 import { Close as CloseIcon } from '@mui/icons-material';
+import Data from "./Pdf_ResumeTemplet/Data";
+
 
 export const Skill = () => {
 
@@ -49,6 +51,7 @@ export const Skill = () => {
             addSkill(newSkill);
         }
     };
+    <Data propsetNewSkill={newSkill} propsetSkillLevel={skillLevel} propsetSkills={skills}/>
     return (
         <Container maxWidth="md">
             <Paper elevation={3} sx={{ p: 4, borderRadius: 2 }}>
