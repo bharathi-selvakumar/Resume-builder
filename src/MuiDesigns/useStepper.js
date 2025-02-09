@@ -4,10 +4,6 @@ import { useState } from "react";
 export const useStepper = () => {
 
   const totalSteps = 7;
-<<<<<<< HEAD
-  console.log(totalSteps)
-=======
->>>>>>> 9b7212e (Updated_PDF)
   const [activeStep, setActiveStep] = useState(0);
   const handleNext = () => {
     if (activeStep < totalSteps - 1) {
