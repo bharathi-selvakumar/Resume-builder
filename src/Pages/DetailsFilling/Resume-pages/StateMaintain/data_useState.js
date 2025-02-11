@@ -15,8 +15,12 @@ export const FormProvider = ({ children }) => {
     });
 
 
+    const [skills, setSkills] = useState([]);
+    const [newSkill, setNewSkill] = useState('');
+    const [skillLevel, setSkillLevel] = useState('Intermediate');
+
     return (
-        <FormContext.Provider value={{ header, setHeader }}>
+        <FormContext.Provider value={{ header, setHeader ,skills,newSkill,skillLevel,setNewSkill,setSkills,setSkillLevel }}>
             {children}
         </FormContext.Provider>
     );

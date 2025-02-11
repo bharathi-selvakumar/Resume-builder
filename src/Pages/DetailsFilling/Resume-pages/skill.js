@@ -1,96 +1,69 @@
 import React, { useState } from "react";
-// import axios from 'axios';
-// import { motion } from 'framer-motion';
 import {
-    Container,
-    Box,
-    Typography,
-    TextField,
-    Button,
-    Card,
-    CardContent,
-    IconButton,
-    Grid,
-    Paper,
+    Container, Paper, Typography, TextField, Button,
+    Card, CardContent, IconButton, Grid, FormControl,
+    InputLabel, Select, MenuItem
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-import {
-    FormControl,
-    InputLabel,
-    Select,
-    MenuItem,
-} from '@mui/material';
-import { Close as CloseIcon } from '@mui/icons-material';
-import Data from "./Pdf_ResumeTemplet/Data";
-
+import CloseIcon from '@mui/icons-material/Close';
+import { useFormContext } from "./StateMaintain/data_useState";
 
 export const Skill = () => {
-
-    const [skills, setSkills] = useState([]);
+    const {skills, setSkills} = useFormContext();  // ✅ Store array in useState
     const [newSkill, setNewSkill] = useState('');
     const [skillLevel, setSkillLevel] = useState('Intermediate');
-    // const [error, setError] = useState(null);
 
-    const addSkill = (skillName) => {
-        const normalizedSkillName = skillName.trim().toLowerCase();
-        if (
-            normalizedSkillName &&
-            !skills.some((skill) => skill.name.toLowerCase() === normalizedSkillName)
-        ) {
-            setSkills([...skills, { name: skillName.trim(), level: skillLevel }]);
+    const addSkill = () => {
+        const normalizedSkillName = newSkill.trim().toLowerCase();
+
+        if (normalizedSkillName && !skills.some(skill => skill.name.toLowerCase() === normalizedSkillName)) {
+            setSkills((prevSkills) => [...prevSkills, { name: newSkill.trim(), level: skillLevel }]); // ✅ Updating array correctly
             setNewSkill('');
         }
     };
 
     const removeSkill = (skillName) => {
-        setSkills(skills.filter((skill) => skill.name !== skillName));
+        setSkills((prevSkills) => prevSkills.filter((skill) => skill.name !== skillName)); // ✅ Removing skill correctly
     };
 
-    const handleKeyDown = (e) => {
-        if (e.key === 'Enter' && newSkill.trim()) {
-            addSkill(newSkill);
-        }
-    };
-    <Data propsetNewSkill={newSkill} propsetSkillLevel={skillLevel} propsetSkills={skills}/>
     return (
         <Container maxWidth="md">
             <Paper elevation={3} sx={{ p: 4, borderRadius: 2 }}>
-                <Typography variant="h4" component="h1" gutterBottom fontWeight="bold" color="primary">
+                <Typography variant="h4" gutterBottom fontWeight="bold" color="primary">
                     Professional Skills
-                </Typography>
-                <Typography variant="subtitle1" color="text.secondary" gutterBottom>
-                    Add your skills
                 </Typography>
 
                 {/* Skill Input Section */}
-                <Box sx={{ mb: 4 }}>
-                    <Box sx={{ display: 'flex', gap: 2, mb: 2 }}>
+                <Grid container spacing={2} alignItems="center">
+                    <Grid item xs={6}>
                         <TextField
                             fullWidth
                             value={newSkill}
-                            onKeyDown={handleKeyDown}
                             onChange={(e) => setNewSkill(e.target.value)}
                             placeholder="Add a skill..."
                             variant="outlined"
-                            size="medium"
                         />
-                        <FormControl sx={{ minWidth: 150 }}>
+                    </Grid>
+                    <Grid item xs={3}>
+                        <FormControl fullWidth>
                             <InputLabel>Level</InputLabel>
-                            <Select value={skillLevel} onChange={(e) => setSkillLevel(e.target.value)} label="Level" >
+                            <Select value={skillLevel} onChange={(e) => setSkillLevel(e.target.value)}>
                                 <MenuItem value="Beginner">Beginner</MenuItem>
                                 <MenuItem value="Intermediate">Intermediate</MenuItem>
                                 <MenuItem value="Advanced">Advanced</MenuItem>
                                 <MenuItem value="Expert">Expert</MenuItem>
                             </Select>
                         </FormControl>
-                        <Button variant="contained" onClick={() => addSkill(newSkill)} startIcon={<AddIcon />}>
+                    </Grid>
+                    <Grid item xs={3}>
+                        <Button variant="contained" onClick={addSkill} startIcon={<AddIcon />}>
                             Add
                         </Button>
-                    </Box>
-                </Box>
+                    </Grid>
+                </Grid>
 
                 {/* Skills List */}
-                <Typography variant="h6" gutterBottom>
+                <Typography variant="h6" gutterBottom sx={{ mt: 3 }}>
                     Your Skills
                 </Typography>
                 <Grid container spacing={2}>
@@ -98,12 +71,7 @@ export const Skill = () => {
                         <Grid item xs={12} sm={6} key={skill.name}>
                             <Card variant="outlined">
                                 <CardContent sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                    <Box>
-                                        <Typography variant="subtitle1">{skill.name}</Typography>
-                                        <Typography variant="body2" color="text.secondary">
-                                            {skill.level}
-                                        </Typography>
-                                    </Box>
+                                    <Typography variant="subtitle1">{skill.name} ({skill.level})</Typography>
                                     <IconButton onClick={() => removeSkill(skill.name)} size="small" color="error">
                                         <CloseIcon />
                                     </IconButton>
@@ -114,5 +82,5 @@ export const Skill = () => {
                 </Grid>
             </Paper>
         </Container>
-    )
-}
+    );
+};

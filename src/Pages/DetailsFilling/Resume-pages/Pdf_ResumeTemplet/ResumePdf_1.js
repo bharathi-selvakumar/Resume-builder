@@ -2,17 +2,18 @@ import React, { useRef, useState, useEffect } from "react";
 import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas";
 import { useFormContext } from "../StateMaintain/data_useState";
+import { Card, Grid, CardContent, Typography, IconButton, } from "@mui/material";
 
 const ResumePDF = () => {
-  const { header } = useFormContext();
-  const { firstname, lastname, email, country, pincode, city } = header;
+  const { header, skills, newSkill, skillLevel } = useFormContext();
 
+  const { firstname, lastname, email, phone, linkedin, city, state, education, experience, profile } = header;
 
   const resumeRef = useRef();
   useEffect(() => {
     console.log("Updated Header Data:", header);
   }, [header]);
-  // Dynamic Color & Font Selection
+
   const [color, setColor] = useState("#2c3e50");
   const [font, setFont] = useState("Arial");
   const availableFonts = ["Arial", "Times New Roman", "Courier New", "Verdana", "Roboto", "Montserrat"];
@@ -26,33 +27,25 @@ const ResumePDF = () => {
 
   const handleDownloadPDF = async () => {
     const element = resumeRef.current;
-
-    // Wait for UI updates to apply before capturing
     await new Promise((resolve) => setTimeout(resolve, 500));
-
     const canvas = await html2canvas(element, {
       scale: 2,
-      useCORS: true, // Ensures external fonts and images render correctly
-      foreignObjectRendering: true, // Allows proper text rendering
+      useCORS: true,
+      foreignObjectRendering: true,
     });
-
     const pdf = new jsPDF("p", "mm", "a4");
     const imgData = canvas.toDataURL("image/png");
-
-    const imgWidth = 210 - 20; // A4 width - margins
+    const imgWidth = 210 - 20;
     const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
     pdf.addImage(imgData, "PNG", 10, 10, imgWidth, imgHeight);
     pdf.save("resume.pdf");
   };
 
   return (
     <div>
-      {/* Color & Font Selectors */}
       <div style={{ marginBottom: "20px" }}>
         <label>Choose Color: </label>
         <input type="color" value={color} onChange={(e) => setColor(e.target.value)} />
-
         <label style={{ marginLeft: "20px" }}>Choose Font: </label>
         <select value={font} onChange={(e) => setFont(e.target.value)}>
           {availableFonts.map((f) => (
@@ -61,7 +54,6 @@ const ResumePDF = () => {
         </select>
       </div>
 
-      {/* Resume Layout */}
       <div
         ref={resumeRef}
         style={{
@@ -72,20 +64,38 @@ const ResumePDF = () => {
           lineHeight: "1.6",
         }}
       >
-        {/* Header Section */}
         <div style={{ textAlign: "center", marginBottom: "20px" }}>
-          <h1 style={{ margin: "0", color: color }}>
-            {firstname || "Your First Name"} {lastname || "Your Last Name"}
-          </h1>
-          <p style={{ fontSize: "14px", color: "#555" }}>
-            {email || "your.email@example.com"} | {city || "City"}, {country || "Country"} | {pincode || "000000"}
-          </p>
+          <h1 style={{ margin: "0", color: color }}>{firstname || "Your First Name"} {lastname || "Your Last Name"}</h1>
+          <p>{email || "your.email@example.com"} | {phone || "123-456-7890"} | {linkedin || "linkedin.com/yourprofile"}</p>
+          <p>{city || "City"}, {state || "State"}</p>
         </div>
 
         <hr style={{ border: `1px solid ${color}`, margin: "20px 0" }} />
+
+        <h2 style={{ color: color }}>Profile</h2>
+        <p>{profile || "Write your professional summary here."}</p>
+
+        <h2 style={{ color: color }}>Education</h2>
+        <p>{education || "Your Degree Name / Major, University Name, Year"}</p>
+
+        <h2 style={{ color: color }}>Skills</h2>
+        <ul>
+          {skills.map((skill) => (
+            <Typography variant="subtitle1" sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              {skill.name} ({skill.level})
+            </Typography>
+          ))}
+        </ul>
+
+        <h2 style={{ color: color }}>Professional Experience</h2>
+        {experience ? experience.map((job, index) => (
+          <div key={index}>
+            <h3>{job.title} | {job.company}, {job.city}, {job.state} ({job.startDate} - {job.endDate})</h3>
+            <p>{job.description}</p>
+          </div>
+        )) : <p>List your work experiences here.</p>}
       </div>
 
-      {/* Download Button */}
       <button
         onClick={handleDownloadPDF}
         style={{
